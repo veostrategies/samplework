@@ -1,0 +1,71 @@
+       
+       <!DOCTYPE html>
+       <html lang="en">
+       <head>
+           <meta charset="UTF-8">
+           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+           <meta http-equiv="X-UA-Compatible" content="ie=edge">
+           <title>Document</title>
+       <body>
+       
+       <p>
+        SEO Standards for Back-End Developers
+        Canonicalization
+        A canonical URL is the version of any given web page's URL that we want indexed by search engines. Canonicalization is the process by which we achieve that result. Every page on a website should only be accessible from one URL. Additional URL parameters can be added, if handled using techniques described here.
+        Dealing with www and index pages.
+        By default, all of the following URLs should redirect to www.example.com
+        example.com, example.com/index.(.*), www.example.com/index.(.*)
+        There may be cases where a website owner prefers to use the non-www version or a subdomain as their root domain. That is fine as long as all other versions redirect to that chosen version.
+        Dealing with trailing slashes
+        URLs may have a trailing slash "/" at the end. Sometimes they do not. The server should always redirect to one or the other. Ideally, the version with the slash is preferred.
+        Example: www.example.com/blue-widget should 301 redirect to www.example.com/blue-widget/
+        Note that this is not an issue with root URLs, such as www.example.com. A slash will never appear at the end of that URL.
+        Canonicalizing subpages
+        A product page on an e-commerce website that is accessible at 3 different URLs is not a good idea. The example demonstrates a problem stemming from the CMS architecture. Ideally, there should only be one URL.
+        /product/reebok-black-crossfit-shoe/ET256/
+        /shoes/product/reebok-black-crossfit-shoe/ET256/
+        /shoes/fitness/product/reebok-black-crossfit-shoe/ET256/
+        In this case, where categories and subcategories appear to be constantly changing, the best URL to use is /product/reebok-black-crossfit-shoe/ET256/. No other URLs should open this page. It's okay to add parameters to the URL. For example, the existence of the following URLs is okay if the canonical link tag is used.
+        /product/reebok-black-crossfit-shoe/ET256/
+        /product/reebok-black-crossfit-shoe/ET256/?cat=shoes
+        /product/reebok-black-crossfit-shoe/ET256/?cat=shoes&subcat=fitness
+        For each of the URLs above, what's called the canonical link tag should be added to the 
+        <code> 
+        <head> section of the page. The purpose of the canonical link tag is to tell search engines which version of a URL to index. As mentioned earlier, the version of the URL that we want to index is /product/reebok-black-crossfit-shoe/ET256/. In this case, the canonical link tag should look like this on all 3 of the above URLs:
+        <link href="http://www.example.com/product/reebok-black-crossfit-shoe/ET256/" rel="canonical" >
+
+        Side note: for tracking purposes, marketers need to add additional parameters to a URL. Those parameters should not be overridden and they should not cause the page to give a 404 error.
+        CMS Features that help with SEO
+        Since most websites use some sort of content management system, it means that the SEO specialist will need to rely on the CMS to help them modify website content to reach their objectives. Here are CMS capabilities that help with SEO:
+        Ability to modify title tags and key meta data on all pages. That means the content that goes into the following areas:
+        
+       
+        <title>{CONTENT}</title> (by default, use this: {Page Name} | {Company Name})
+        <meta name="description" content="{CONTENT}" > (by default, leave this empty)
+        <meta name="robots" content="{CONTENT}" > (by default, use index,follow)
+        <link href="{CONTENT}" rel="canonical" >    (by default, match the URL of the page. So if the URL of the page is http://www.example.com/product/reebok-black-crossfit-shoe/ET256/ then the canonical link tag should look like: <link href="http://www.example.com/product/reebok-black-crossfit-shoe/ET256/ " rel="canonical" >
+        Updating of the sitemap.xml file:
+        The CMS should be able to generate a sitemap.xml file and place it in the root folder of the website (www.example.com/sitemap.xml). It should contain all main pages of the website and auto-update when new pages are added or some are removed. This is the format to follow:
+        <?xml version="1.0" encoding="UTF-8"?> <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> <url> <loc>http://www.example.com/</loc> <lastmod>2005-01-01</lastmod> </url> </urlset>
+       
+        </code>
+        </p>
+
+        <p>
+        When a website contains multiple sections, for example a Wordpress-controlled blog, and some other self-contained sections, it may be easier to generate a separate sitemap for each section. These can be linked to using a sitemap index file, as seen in this example: https://www.bluefountainmedia.com/sitemap.xml
+        Updating of the robots.txt file
+        The robots.txt file controls where search engine crawlers are allowed to go. This file should be editable via the CMS. Magento has a list of subdirectories that should be disallowed by default that should be included from the start.
+        Editable page sections
+        Although it is not an SEO requirement, it is beneficial for tracking purposes to be able to edit various parts of all web pages on the website. These include:
+        Immediately after the opening <head> tag. Immediately before the closing </head> tag. Immediately after the opening <body> tag. Immediately before the closing </body> tag.
+        There are various tracking scripts that help in obtaining information about user behavior that need to be added to any of these areas. There should be a way to add a tag to all pages as well as each page individually.
+        Image uploads
+        When images are uploaded via the CMS, file names should be editable rather than being rewritten to a random string by the CMS. Image titles and alt tags should be editable (they usually are in most content management systems).
+        Page speed
+        To optimize page load time, various back-end load time cutting techniques should be employed, a long list of which can be found here: http://gtmetrix.com/recommendations.html. Pages should not take more than 3 seconds to load.
+        404 configuration
+        When a random URL is accessed, the server should return a 404 response - not a 302, 200 or any other.
+        Source: Alhan Keser, https://www.bluefountainmedia.com/blog/seo-standards-coders-developers
+        </p>
+</head>
+</body>
